@@ -43,13 +43,13 @@ class App extends Component {
     return {
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
-      rightCol:width - (clarifaiFace.right_col * width),
-      bottomRow:height - (clarifaiFace.bottom_row *height)
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
     }
   }
 
   displayFaceBox = (box) => {
-    this.setState({box:box});
+    this.setState({box: box});
   }
 
   onInputChange = (event) => {
@@ -66,6 +66,7 @@ class App extends Component {
   }
 
   render() {
+    const { imageUrl, box } = this.state;
   return (
     <div className="App">
     <Particles  className="particles"
@@ -77,8 +78,8 @@ class App extends Component {
           onInputChange = {this.onInputChange} 
           onButtonSubmit = {this.onButtonSubmit} />
       <FaceRecognition  
-           box={this.state.box} 
-           imageUrl = {this.state.imageUrl} /> 
+           box={box} 
+           imageUrl = {imageUrl} /> 
     </div>
   );
 }
