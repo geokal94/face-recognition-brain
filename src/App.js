@@ -1,6 +1,7 @@
 import React, {
   Component
 } from 'react';
+import Clarifai from 'clarifai';
 import Navigation from './components/Navigation/Navigation';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Logo from './components/Logo/Logo';
@@ -10,6 +11,10 @@ import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import './App.css';
+
+const app = new Clarifai.App({
+  apiKey: '601dad170fa841f088417daa3c0b0047'
+});
 
 const particlesOptions = {
   particles: {
