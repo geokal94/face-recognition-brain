@@ -86,16 +86,10 @@ class App extends Component {
     this.setState({
       imageUrl: this.state.input
     });
-    fetch('https://face-recognition-br-api.herokuapp.com/imageUrl', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          input: this.state.input
-        })
-      })
-      .then(response => response.json())
+    app.models
+      .predict(
+        Clarifai.FACE_DETECT_MODEL,
+        this.state.input)
       .then(response => {
         if (response) {
           fetch('https://face-recognition-br-api.herokuapp.com/image', {
@@ -143,59 +137,58 @@ class App extends Component {
       route
     } = this.state;
     return ( <
-      div className = "App" >
-      <
-      Particles className = "particles"
-      params = {
-        particlesOptions
-      }
-      /> <
-      Navigation isSignedIn = {
-        isSignedin
-      }
-      onRouteChange = {
-        this.onRouteChange
-      }
-      /> {
+        div className = "App" >
+        <
+        Particles className = "particles"
+        params = {
+          particlesOptions
+        }
+        /> <
+        Navigation isSignedIn = {
+          isSignedin
+        }
+        onRouteChange = {
+          this.onRouteChange
+        }
+        /> {
         route === 'home' ?
-          <
-          div >
-          <
-          Logo / >
-          <
-          Rank name = {
-            this.state.user.name
-          }
+        <
+        div >
+        <
+        Logo / >
+        <
+        Rank name = {
+          this.state.user.name
+        }
         entries = {
           this.state.user.entries
         }
         /> <
-        ImageLinkForm
-        onInputChange = {
+        ImageLinkForm onInputChange = {
           this.onInputChange
         }
         onButtonSubmit = {
           this.onButtonSubmit
         }
         /> <
-        FaceRecognition
-        box = {
+        FaceRecognition box = {
           box
         }
         imageUrl = {
           imageUrl
         }
-        />  <
-        /div> : (
+        />  < /
+        div > : (
           route === 'signin' ?
-          < Signin loadUser = {
+          <
+          Signin loadUser = {
             this.loadUser
           }
           onRouteChange = {
             this.onRouteChange
           }
-          />     :
-          < Register loadUser = {
+          />     : <
+          Register loadUser = {
             this.loadUser
           }
           onRouteChange = {
@@ -206,8 +199,8 @@ class App extends Component {
       } <
       /div>
 
-    );
-  }
+  );
+}
 }
 
 export default App;
